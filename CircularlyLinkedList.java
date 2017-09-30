@@ -8,15 +8,15 @@ public class CircularlyLinkedList<T extends Comparable<T>> {
     }
 
     public void insertFirst(T data){
-        Node node = new Node();
-        node.data = data;
+        Node<T> node = new Node();
+        node.setData(data);
 
         if(isEmpty()){
             // if the list is empty setting the last node also to this node
             last = node;
         }
         // node is being assigned old first node (null when the list is empty.
-        node.next = first;
+        node.setNext(first);
         // the new node is now in the first space.
         first = node;
     }
@@ -27,13 +27,13 @@ public class CircularlyLinkedList<T extends Comparable<T>> {
 
     public void insertLast(T data){
         Node node = new Node();
-        node.data = data;
+        node.setData(data);
         // when the list is empty set the node we just created to be the first (first point to this node)
         if(isEmpty()){
             first = node;
         } else {
             // point the old last node to this node
-            last.next = node;
+            last.setNext(node);
         }
         // set the last to the new node we just added
         last = node;
@@ -41,11 +41,12 @@ public class CircularlyLinkedList<T extends Comparable<T>> {
 
     public T deleteFirst(){
         Node<T> temp = first;
-        if(first.next == null){
+        if(first.getNext() == null){
             last = null;
         }
-        first = first.next;
-        return temp.data;
+        first = first.getNext();
+
+        return temp.getData();
     }
 
 
@@ -53,7 +54,7 @@ public class CircularlyLinkedList<T extends Comparable<T>> {
         System.out.println("Printing list first to last:");
         while(first != null){
             first.displayNode();
-            first = first.next;
+            first = first.getNext();
         }
     }
 
