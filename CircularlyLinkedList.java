@@ -1,4 +1,4 @@
-public class CircularlyLinkedList {
+public class CircularlyLinkedList<T extends Comparable<T>> {
     private Node first;
     private Node last;
 
@@ -7,7 +7,7 @@ public class CircularlyLinkedList {
         last = null;
     }
 
-    public void insertFirst(int data){
+    public void insertFirst(T data){
         Node node = new Node();
         node.data = data;
 
@@ -25,7 +25,7 @@ public class CircularlyLinkedList {
         return first == null;
     }
 
-    public void insertLast(int data){
+    public void insertLast(T data){
         Node node = new Node();
         node.data = data;
         // when the list is empty set the node we just created to be the first (first point to this node)
@@ -39,13 +39,13 @@ public class CircularlyLinkedList {
         last = node;
     }
 
-    public int deleteFirst(){
-        int temp = first.data;
+    public T deleteFirst(){
+        Node<T> temp = first;
         if(first.next == null){
             last = null;
         }
         first = first.next;
-        return temp;
+        return temp.data;
     }
 
 
